@@ -40,7 +40,7 @@ public class User implements UserDetails{
     @DateTimeFormat(pattern="yyyy-mm-dd")
     private final Date joinedDate;
 
-    private final char gender;
+    private final String gender;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

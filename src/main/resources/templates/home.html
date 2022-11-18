@@ -20,14 +20,19 @@
                 <div class="alert alert-danger justify-content-center text-center" th:if="${error}">
                     incorrect username or password
                 </div>
-                <form method="post" th:action="@{/login}">
+                <form method="post" th:action="@{/authenticate}">
                     <div class="form-group">
                       <label for="username">username</label>
-                      <input type="text" class="form-control" id="username">
+                      <input type="text" name="username" class="form-control" id="username">
                     </div>
                     <div class="form-group">
                       <label for="password">Password</label>
-                      <input type="password" class="form-control" id="password" placeholder="Password">
+                      <input type="password" name="password" class="form-control" id="password" placeholder="Password">
+                    </div>
+                    <div class="form-group">
+                      <a th:href="@{/register}">
+                        register
+                      </a>
                     </div>
                     <button type="submit" class="btn btn-primary">Login</button>
                   </form>
