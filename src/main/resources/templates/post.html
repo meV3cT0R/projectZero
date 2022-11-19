@@ -1,0 +1,8 @@
+<div class="alert alert-success" th:if="${sucess}" th:text="${sucess}">
+
+</div>
+<form method="post" th:action="@{/post}" th:object="${post}">
+    <label for="postText">write something...</label>
+    <input type="text" th:field="*{text}" id="postText">
+    <button type="submit" class="btn btn-outline-success">post</button>
+</form>

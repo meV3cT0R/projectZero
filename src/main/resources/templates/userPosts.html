@@ -1,0 +1,5 @@
+<div th:if="${posts}" th:each="post : ${posts}">
+    <p th:text="${post.text}"></p>
+    <p>Author: <span th:text="${post.user.username}"></span></p>
+    <p>createdAt: <span th:text="${post.createdAt}"></span></p>
+</div>

@@ -13,7 +13,10 @@ import com.vector.app.model.User;
 public class HomeController {
     @GetMapping
     public String getHomePage(@AuthenticationPrincipal User user,Model model) {
-        model.addAttribute("user",user);
-        return "userhome";
+        if(user !=null){
+            model.addAttribute("user",user);
+            return "userhome";
+        }
+        return "home";
     }
 }

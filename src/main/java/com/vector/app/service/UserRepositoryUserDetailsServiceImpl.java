@@ -6,20 +6,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Service;
 
 import com.vector.app.model.User;
 import com.vector.app.repository.UserRepository;
 
-@Service
 public class UserRepositoryUserDetailsServiceImpl implements UserDetailsService{
+    @Autowired
     UserRepository userRepo;
 
-    @Autowired
-    public UserRepositoryUserDetailsServiceImpl(UserRepository userRepo) {
-        this.userRepo = userRepo;
+    
+    public UserRepositoryUserDetailsServiceImpl() {
     }
-
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
