@@ -1,6 +1,5 @@
 package com.vector.app.model;
 
-import java.util.Calendar;
 import java.util.Date;
 
 import javax.persistence.Entity;

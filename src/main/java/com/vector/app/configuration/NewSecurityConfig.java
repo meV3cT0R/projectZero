@@ -33,7 +33,10 @@ public class NewSecurityConfig {
         ).authorizeRequests().antMatchers("/","/register")
         .permitAll().and()
         .authorizeRequests()
-        .antMatchers("/home","/home/**","/user","/user/**","/post","/post/**").authenticated();
+        .antMatchers("/home","/home/**","/user","/user/**","/post","/post/**").authenticated()
+        .and().logout().logoutUrl("/logout").logoutSuccessUrl("/")
+        .invalidateHttpSession(true)
+        .deleteCookies("JSESSIONID");
         return http.build();
     }
 

@@ -17,6 +17,14 @@
                 <li>
                   <a th:href="@{/post}">create post</a>
                 </li>
+                <li>
+                  <a th:href="@{/notification}">notifications</a>
+                </li>
+                <li>
+                  <form  method="post" th:action="@{/logout}">
+                    <button class="btn btn-outline-danger">log out</button>
+                  </form>
+                </li>
               </ul>
             </div>
         </div>

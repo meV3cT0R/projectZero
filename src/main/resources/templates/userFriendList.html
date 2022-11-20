@@ -1,0 +1,5 @@
+<p th:text="${friendList}?: 'No Friends to Show'"></p>
+<div  th:if="${friendList !=null}" th:each="friend : ${friendList}">
+    
+    <p><span th:text="${friend.firstName}"></span> <span th:text="${friend.lastName}"></span></p>
+</div>

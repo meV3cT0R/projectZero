@@ -2,7 +2,8 @@ package com.vector.app.controller;
 
 import javax.validation.Valid;
 
-import org.springframework.beans.factory.annotation.Autowired;
+
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.vector.app.model.RegisterUser;
+import com.vector.app.model.User;
 import com.vector.app.repository.UserRepository;
 
 @Controller
@@ -19,15 +21,22 @@ import com.vector.app.repository.UserRepository;
 public class RegisterController {
     UserRepository userRepo;
     PasswordEncoder passwordEncoder;
+    DefaultController defaultController;
 
-    @Autowired
-    public RegisterController(UserRepository userRepo,PasswordEncoder passwordEncoder) {
+    
+    
+    public RegisterController(UserRepository userRepo, PasswordEncoder passwordEncoder,
+            DefaultController defaultController) {
         this.userRepo = userRepo;
         this.passwordEncoder = passwordEncoder;
+        this.defaultController = defaultController;
     }
-    
+
     @GetMapping
-    public String registerForm(Model model){
+    public String registerForm(Model model,@AuthenticationPrincipal User user){
+        if(user != null)
+            return defaultController.getHomePage(model);
+            
         model.addAttribute("registerUser", new RegisterUser());
         return "register";
     }
