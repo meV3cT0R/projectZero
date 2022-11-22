@@ -5,12 +5,13 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
+
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
+
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
@@ -51,20 +52,15 @@ public class User implements UserDetails{
     @OneToMany(mappedBy="user")
     private List<Post> posts;
 
-    private List<String> friends;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable
+    private List<User> friends;
+
+    @ManyToMany()
+    private List<User> friendOf;
+
+    @OneToMany(mappedBy="user",fetch = FetchType.EAGER)
     private List<Notification> notifications;
-
-    public void addFriend(User user) {
-        friends.add(user.getUsername());
-    }
-
-    public void sendNotification(String text) {
-        Notification notification = new Notification();
-        notification.setCreatedAt(new Date());
-        notification.setText(text);
-        notification.setDone(false);
-        notifications.add(notification);
-    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -96,6 +92,18 @@ public class User implements UserDetails{
     public boolean isEnabled() {
 
         return true;
+    } 
+
+    @Override
+    public boolean equals(Object o) {
+        if(o instanceof User)
+            return ((User) o).getUsername().equals(this.getUsername());
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
     }
 
     

@@ -45,10 +45,14 @@ public class UserController {
                 request.getSession().invalidate();
                 return "home";
             }
-            boolean canSendFriendRequest=true;
-            if(user.get().getUsername().equals(authenticatedUser.getUsername()))
-                canSendFriendRequest=false;
+            boolean canSendFriendRequest=false;
+            
+            if(!user.get().getUsername().equals(authenticatedUser.getUsername())) {
+                canSendFriendRequest = user.get().getFriends().contains(authenticatedUser);
 
+                canSendFriendRequest=true;
+                    
+            } 
             model.addAttribute("canSendFriendRequest",canSendFriendRequest);
             model.addAttribute("user",user.get());
             return "userdetail";

@@ -12,7 +12,6 @@
     <p>Gender : <span th:text="${user.gender}"></span></p>
     <p>Date Of Birth : <span th:text="${user.dateOfBirth}"></span></p>
     <p>Joined Date : <span th:text="${user.joinedDate}"></span></p>
-    <p><a th:href="">notifications</a><span></span></p>
     <p><a th:href="@{user/{username}/friends(username=${user.username})}">friend list</a></p>
     <div th:if="${canSendFriendRequest}">
       <form  method="post" th:action="@{/addfriend}">

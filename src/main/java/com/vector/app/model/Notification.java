@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import lombok.Data;
 
@@ -16,4 +18,12 @@ public class Notification {
     private String text;
     private Date createdAt;
     private boolean done;
+    private Type type;
+
+    @ManyToOne(targetEntity = User.class)
+    @JoinColumn(name="userId",referencedColumnName = "id")
+    private User user;
+    enum Type{
+
+    }
 }

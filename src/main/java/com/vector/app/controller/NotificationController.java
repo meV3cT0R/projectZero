@@ -26,10 +26,9 @@ public class NotificationController {
         this.notiRepo = notiRepo;
     }
 
-
-
     @GetMapping
     public String getAllNotification(Model model,@AuthenticationPrincipal User user) {
+        model.addAttribute("notifications",user.getNotifications());
         return "notification";
     }
 }
